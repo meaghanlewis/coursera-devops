@@ -1,21 +1,14 @@
 setup:
-	#run this to create a virtualenv
-	python3 -m venv ~/.devopsvenv
-	#source this to source the virtualenv
-	#source ~/.devopsvenv/bin/active 
+	python3 -m venv ~/.myrepo
 
 install:
-	exit 1 # Delete this when you fix
-	#Install software
+	pip install -r requirements.txt
 
 test:
-	exit 1 # Delete this when you fix
-	# Test ipython notebook
-	# Test python source code
-
+	python -m pytest -vv --cov-report=xml --cov=myrepolib tests/*.py
+	python -m pytest --nbval notebook.ipynb
 
 lint:
-	exit 1 # Delete this when you fix
-	# Run lint
+	pylint --disable=R,C myrepolib cli web
 
 all: install lint test
